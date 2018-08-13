@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>倒计时</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        .box{
+            width: 300px;
+            height: 200px;
+            border: 1px solid #000;
+            margin: 0 auto;
+        }
+        .sp1{
+            width: 200px;
+            font-size: 18px;
+            display: block;
+            color: darkslategray;
+            font-weight: bolder;
+            margin: 0 auto;
+            text-align: center;
+        }
+        #sp{
+            width: 300px;
+            height: 50px;
+            font-size: 18px;
+            background-color: #efefef;
+            display: block;
+            color: rgb(231, 147, 50);
+            font-weight: bolder;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <span class="sp1">距离你的生日还有：</span>
+        <span id="sp"></span>
+    </div>
+    <script>
+
+        window.onload = function () {
+            setInterval(function () {
+                var date = new Date();
+                var currentTime = date.getTime();
+                var nextDate = new Date('2018/10/27 0:0:0');
+                nextTime = nextDate.getTime();
+
+                var allTime = nextTime - currentTime;
+
+                // 7. 把毫秒转成秒
+                var allSecond = parseInt(allTime / 1000);
+
+                // 8.转化
+                var d = size(parseInt(allSecond / 3600 / 24));
+                var h = size(parseInt(allSecond / 3600 % 24));
+                var m = size(parseInt(allSecond / 60 % 60));
+                var s = size(parseInt(allSecond % 60));
+
+                var span = document.getElementById('sp');
+                span.innerText = d + '天' + h + '小时' + m + '分钟' + s + '秒';
+            }, 1000)
+        }
+
+
+        function size(num) {
+            return num >= 10 ? num : '0' + num;
+        }
+
+    </script>
+</body>
+
+</html>
